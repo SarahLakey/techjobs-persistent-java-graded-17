@@ -16,10 +16,6 @@ public class Employer extends AbstractEntity {
     @Size(max = 100, message = "Name too long!")
     public String location;
 
-//    @OneToMany (mappedBy = "id")
-//    @OneToMany (mappedBy = "jobs")
-//    @OneToMany (mappedBy = "employer")
-
     @OneToMany
     @JoinColumn(name = "employer_id")
     private final List<Job> jobs = new ArrayList<>();
