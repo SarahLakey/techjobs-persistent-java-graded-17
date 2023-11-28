@@ -5,6 +5,7 @@ import org.launchcode.techjobs.persistent.models.Employer;
 import org.launchcode.techjobs.persistent.models.Job;
 import org.launchcode.techjobs.persistent.models.Skill;
 import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
+import org.launchcode.techjobs.persistent.models.data.JobRepository;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class HomeController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @Autowired
+    private JobRepository jobRepository;
+
     @RequestMapping("/")
     public String index(Model model) {
 
@@ -51,16 +55,19 @@ public class HomeController {
                                     @RequestParam List<Integer> skills) {
 
         if (errors.hasErrors()) {
-//	    model.addAttribute("title", "Add Job");
-            model.addAttribute("title", employerRepository.findById(employerId));
+//	        model.addAttribute("title", "Add Job");
+//            model.addAttribute("title", employerRepository.findById(employerId));
             return "add";
         }
-//        Employer employer = employerRepository.findById(employerId).orElse(new Employer());
-//        newJob.setEmployer(employer);
-//        List<Skill> skillObjects =  (List<Skill>) skillRepository.findAllById(skills);
-//        newJob.setSkills(skillObjects);
-        //look at SkillController
-        //save job coding
+
+
+        Employer employer = employerRepository.findById(employerId).orElse(new Employer());
+        newJob.setEmployer(employer);
+
+        List<Skill> skillObjects =  (List<Skill>) skillRepository.findAllById(skills);
+        newJob.setSkills(skillObjects.toString());
+
+        jobRepository.save(newJob);
 
         return "redirect:";
 
