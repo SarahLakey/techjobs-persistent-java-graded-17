@@ -2,6 +2,7 @@ package org.launchcode.techjobs.persistent.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 import java.util.List;
