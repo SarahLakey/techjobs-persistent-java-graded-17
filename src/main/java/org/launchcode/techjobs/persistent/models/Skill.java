@@ -37,6 +37,7 @@ public class Skill extends AbstractEntity {
 
     @Override
     public String toString() {
-        return super.toString();
+//        return super.toString();
+        return description;
     }
 }

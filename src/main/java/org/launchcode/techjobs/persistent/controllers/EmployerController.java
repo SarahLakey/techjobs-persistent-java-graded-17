@@ -19,9 +19,10 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+//    @GetMapping("/")
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("employer", employerRepository.findAll());
+        model.addAttribute("employers", employerRepository.findAll());
         return "employers/index";
 
     }
@@ -50,8 +51,10 @@ public class EmployerController {
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
+//            model.addAttribute("employers", employer);
             return "employers/view";
         } else {
+//            model.addAttribute("employers", employerRepository.findAll());
             return "redirect:../";
         }
 
